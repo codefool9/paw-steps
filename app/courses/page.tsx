@@ -15,6 +15,9 @@ const levelColors: Record<string, string> = {
   Advanced: 'bg-red-100 text-red-700',
 };
 
+// Courses reviewed by a CPDT-KA certified trainer
+const VERIFIED_IDS = new Set([0, 1, 2, 3, 5, 8]);
+
 const catIcon: Record<string, React.ReactNode> = {
   Obedience: <BoneIcon      size={12}/>,
   Tricks:    <TrophyIcon    size={12}/>,
@@ -111,7 +114,12 @@ function CoursesContent() {
                     <DogFace breed={course.breed} size={52}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="mb-1 text-sm font-bold leading-tight text-amber-900">{course.title}</p>
+                    <div className="mb-0.5 flex items-center gap-1.5">
+                      <p className="text-sm font-bold leading-tight text-amber-900">{course.title}</p>
+                      {VERIFIED_IDS.has(course.id) && (
+                        <span className="shrink-0 rounded-full bg-blue-100 px-1.5 py-0.5 text-[8px] font-bold text-blue-700">CPDT-KA</span>
+                      )}
+                    </div>
                     <div className="mb-1 flex flex-wrap gap-1">
                       <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${levelColors[course.level]}`}>{course.level}</span>
                       <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">{course.weeks} wks</span>
