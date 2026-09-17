@@ -52,7 +52,7 @@ const tabs = [
 export default function BottomNav() {
   const pathname = usePathname();
   return (
-    <nav className="flex shrink-0 items-stretch border-t border-amber-200 bg-white">
+    <nav className="flex shrink-0 items-stretch border-t border-amber-200 bg-white" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       {tabs.map(tab => {
         const isActive =
           pathname === tab.href ||
