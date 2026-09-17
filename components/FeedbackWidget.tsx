@@ -1,10 +1,8 @@
 'use client';
 import { useState, FormEvent } from 'react';
 import { StarIcon } from '@/components/Icon';
-
-// ── To activate: sign up free at formspree.io → create a form → paste the ID below ──
-const FORMSPREE_ID = 'YOUR_FORM_ID';
-const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`;
+import { db } from '@/lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const RATINGS = [
   { key: 'overall',       label: 'Overall rating'          },
@@ -74,15 +72,10 @@ export default function FeedbackWidget() {
         favorite_feature:  bestFeature,
         comments:          comment,
         instagram:         instagram || '(not provided)',
-        _subject:          'PawSteps App Feedback',
-        _replyto:          instagram ? `${instagram} (Instagram)` : 'anonymous',
+        created_at:        serverTimestamp(),
       };
-      const res = await fetch(FORMSPREE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(body),
-      });
-      if (res.ok) setSubmitted(true);
+      await addDoc(collection(db, 'feedback'), body);
+      setSubmitted(true);
     } catch {
       // silently fail — still show thank you for demo
       setSubmitted(true);

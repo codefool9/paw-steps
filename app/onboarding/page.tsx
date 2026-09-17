@@ -147,7 +147,7 @@ export default function Onboarding() {
               onClick={() => choosePet('cat')}
               className="flex-1 flex flex-col items-center gap-3 rounded-2xl bg-white/20 border-2 border-white/40 py-6 active:bg-white/30 transition-colors"
             >
-              <PetFace breed="Tabby" type="cat" size={72}/>
+              <PetFace breed="Maine Coon" type="cat" size={72}/>
               <span className="text-base font-extrabold text-white">Cat</span>
             </button>
           </div>

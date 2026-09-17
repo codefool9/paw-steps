@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "paw-steps-cdf50",
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
