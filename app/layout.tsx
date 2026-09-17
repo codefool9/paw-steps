@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="min-h-screen bg-amber-100 md:flex md:items-center md:justify-center md:py-10">
-        <div className="flex w-full flex-col overflow-hidden bg-amber-50 md:h-[844px] md:w-[390px] md:rounded-[48px] md:shadow-2xl">
+        <div className="flex h-screen w-full flex-col overflow-hidden bg-amber-50 md:h-[844px] md:w-[390px] md:rounded-[48px] md:shadow-2xl">
           {/* Status Bar */}
           <div className="flex h-10 shrink-0 items-center justify-between bg-amber-50 px-5">
             <span className="text-sm font-semibold text-amber-900">9:41</span>
