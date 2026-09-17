@@ -10,10 +10,12 @@ export default function Setup() {
   const [selected, setSelected] = useState(0);
   const [name, setName] = useState('');
   const [showMore, setShowMore] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const selectedBreed = ALL_BREEDS[selected];
 
   function handleStart() {
+    setLoading(true);
     const pupName = name.trim() || selectedBreed.name;
     localStorage.setItem('pawsteps_mode', 'account');
     localStorage.setItem('pawsteps_avatar', JSON.stringify({
@@ -36,7 +38,12 @@ export default function Setup() {
 
       <div className="flex-1 overflow-y-auto px-5 py-4">
 
-        {/* ── Featured presets ─────────────────────────────────── */}
+        {/* Hint — breed is cosmetic */}
+        <p className="mb-3 text-[11px] text-stone-400 text-center">
+          Pick the one that looks like your dog — breed doesn&apos;t change your training path
+        </p>
+
+        {/* Featured presets */}
         <div className="grid grid-cols-3 gap-3 mb-4">
           {PRESET_BREEDS.map((b, i) => (
             <button
@@ -50,18 +57,20 @@ export default function Setup() {
             >
               <DogFace breed={b.name} size={64}/>
               <span className="text-[10px] font-semibold text-stone-600 text-center leading-tight">{b.name}</span>
-              {selected === i && <span className="text-[9px] font-bold text-amber-600">✓</span>}
+              {selected === i && <span className="text-[9px] font-bold text-amber-600">✓ Selected</span>}
             </button>
           ))}
         </div>
 
-        {/* ── More breeds toggle ────────────────────────────────── */}
+        {/* More breeds toggle — always shows count so users know options exist */}
         <button
           onClick={() => setShowMore(v => !v)}
-          className="w-full mb-3 flex items-center justify-between rounded-xl border border-amber-200 bg-white px-4 py-2.5"
+          className="w-full mb-3 flex items-center justify-between rounded-xl border border-amber-200 bg-white px-4 py-2.5 active:bg-amber-50"
         >
-          <span className="text-xs font-bold text-amber-700">More breeds</span>
-          <span className={`text-xs font-bold text-amber-500 transition-transform ${showMore ? 'rotate-90' : ''}`}>›</span>
+          <span className="text-xs font-bold text-amber-700">
+            {showMore ? 'Fewer breeds' : `${MORE_BREEDS.length} more breeds`}
+          </span>
+          <span className={`text-sm font-bold text-amber-500 transition-transform duration-200 ${showMore ? 'rotate-90' : ''}`}>›</span>
         </button>
 
         {showMore && (
@@ -87,7 +96,7 @@ export default function Setup() {
           </div>
         )}
 
-        {/* ── Name input ───────────────────────────────────────── */}
+        {/* Name input */}
         <div className="mb-4">
           <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-amber-600">Name your pup</p>
           <div className="flex items-center gap-3 rounded-2xl border border-amber-200 bg-white px-4 py-3 shadow-sm">
@@ -97,12 +106,13 @@ export default function Setup() {
               placeholder={`e.g. Biscuit, Luna, Max…`}
               value={name}
               onChange={e => setName(e.target.value)}
+              maxLength={20}
               className="flex-1 bg-transparent text-sm font-medium text-amber-900 placeholder-stone-300 outline-none"
             />
           </div>
         </div>
 
-        {/* ── Preview card ─────────────────────────────────────── */}
+        {/* Preview card */}
         <div className="mb-6 flex flex-col items-center rounded-2xl bg-gradient-to-br from-amber-200 to-amber-300 py-5">
           <DogFace breed={selectedBreed.name} size={80}/>
           <p className="mt-2 text-sm font-bold text-amber-900">{name.trim() || selectedBreed.name}</p>
@@ -118,9 +128,12 @@ export default function Setup() {
       <div className="shrink-0 px-5 pb-6 pt-3 border-t border-amber-100 bg-amber-50">
         <button
           onClick={handleStart}
-          className="w-full rounded-2xl bg-amber-600 py-4 text-base font-bold text-white shadow-md active:bg-amber-700"
+          disabled={loading}
+          className={`w-full rounded-2xl py-4 text-base font-bold text-white shadow-md transition-colors ${
+            loading ? 'bg-amber-400' : 'bg-amber-600 active:bg-amber-700'
+          }`}
         >
-          Let&apos;s Start Training
+          {loading ? 'Setting up…' : "Let's Start Training"}
         </button>
       </div>
 

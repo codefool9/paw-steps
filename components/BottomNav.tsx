@@ -25,6 +25,16 @@ const tabs = [
       </svg>
     ),
   },
+  {
+    href: '/profile',
+    label: 'Profile',
+    icon: (active: boolean) => (
+      <svg className="h-6 w-6" viewBox="0 0 24 24" fill={active ? 'currentColor' : 'none'} stroke={active ? 'none' : 'currentColor'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+      </svg>
+    ),
+  },
 ];
 
 export default function BottomNav() {
@@ -32,7 +42,9 @@ export default function BottomNav() {
   return (
     <nav className="flex shrink-0 items-stretch border-t border-amber-200 bg-white">
       {tabs.map((tab) => {
-        const isActive = pathname === tab.href || (tab.href === '/courses' && pathname === '/course');
+        const isActive =
+          pathname === tab.href ||
+          (tab.href === '/courses' && pathname === '/course');
         return (
           <Link
             key={tab.href}

@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DogFace from '@/components/DogFace';
 import { PawIcon } from '@/components/Icon';
@@ -9,16 +9,38 @@ const HERO_BREEDS = ['Golden Retriever', 'Poodle', 'Siberian Husky'];
 
 export default function Welcome() {
   const router = useRouter();
+  const [guestWarning, setGuestWarning] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
 
   useEffect(() => {
     const mode = localStorage.getItem('pawsteps_mode');
-    if (mode) router.replace('/home');
+    if (mode) {
+      setRedirecting(true);
+      router.push('/home'); // push so back-nav from Home returns here
+    }
   }, [router]);
 
-  function handleGuest() {
+  function handleGuestTap() {
+    const existing = localStorage.getItem('pawsteps_mode');
+    if (existing === 'account') {
+      setGuestWarning(true); // warn before overwriting saved account
+    } else {
+      confirmGuest();
+    }
+  }
+
+  function confirmGuest() {
     localStorage.setItem('pawsteps_mode', 'guest');
     localStorage.setItem('pawsteps_avatar', JSON.stringify({ breed: 'Golden Retriever', name: 'Your Pup' }));
     router.push('/home');
+  }
+
+  if (redirecting) {
+    return (
+      <div className="flex flex-1 items-center justify-center bg-gradient-to-b from-amber-500 to-amber-600">
+        <PawIcon size={48} className="text-white animate-pulse"/>
+      </div>
+    );
   }
 
   return (
@@ -51,13 +73,37 @@ export default function Welcome() {
           </div>
         </Link>
         <button
-          onClick={handleGuest}
-          className="w-full rounded-2xl border-2 border-white/50 py-3 text-sm font-semibold text-white"
+          onClick={handleGuestTap}
+          className="w-full rounded-2xl border-2 border-white/50 py-3 text-sm font-semibold text-white active:bg-white/10"
         >
           Continue as Guest
         </button>
         <p className="text-[11px] text-amber-200">No credit card required · Free courses always free</p>
       </div>
+
+      {/* Guest warning overlay */}
+      {guestWarning && (
+        <div className="absolute inset-0 flex items-end justify-center bg-black/40 pb-10 px-6">
+          <div className="w-full rounded-2xl bg-white p-5 shadow-xl">
+            <p className="mb-1 text-sm font-bold text-amber-900">Leave your account?</p>
+            <p className="mb-4 text-xs text-stone-500">Exploring as a guest will switch you out of your saved account.</p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setGuestWarning(false)}
+                className="flex-1 rounded-xl border border-amber-200 py-2.5 text-sm font-semibold text-amber-700"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmGuest}
+                className="flex-1 rounded-xl bg-amber-600 py-2.5 text-sm font-bold text-white"
+              >
+                Continue as Guest
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
