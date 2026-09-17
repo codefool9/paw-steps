@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-type FaceType = 'floppy' | 'pointy' | 'bat' | 'fluffy' | 'flat' | 'longear' | 'husky';
+type FaceType = 'floppy' | 'pointy' | 'bat' | 'fluffy' | 'flat' | 'longear' | 'husky' | 'upright';
 
 interface BreedDef {
   type: FaceType;
@@ -17,23 +17,31 @@ export const ALL_BREEDS: { name: string; def: BreedDef }[] = [
   // ── Featured 6 ──────────────────────────────────────────────────────────
   { name: 'Golden Retriever',       def: { type: 'floppy',  face: '#E8B870', ear: '#C48C30', earInner: '#D4A050',                   outline: '#5C3A10' } },
   { name: 'Labrador',               def: { type: 'floppy',  face: '#EDD898', ear: '#C9A050', earInner: '#B88830',                   outline: '#5C3A10' } },
+  { name: 'French Bulldog',         def: { type: 'bat',     face: '#E8D4A8', ear: '#C4B090', earInner: '#D4C090',                   outline: '#4A3820' } },
   { name: 'Poodle',                 def: { type: 'fluffy',  face: '#F5F0E0', ear: '#E0D8C0', earInner: '#F0EAD0',                   outline: '#6B5C3A' } },
   { name: 'Beagle',                 def: { type: 'floppy',  face: '#D4A86A', ear: '#5C3A18', earInner: '#8C5A28', mark: '#F5F0E0',  outline: '#3A2010' } },
   { name: 'Dachshund',              def: { type: 'floppy',  face: '#8B4513', ear: '#5C2C08', earInner: '#7A3A10',                   outline: '#3A1A08' } },
-  { name: 'French Bulldog',         def: { type: 'bat',     face: '#E8D4A8', ear: '#C4B090', earInner: '#D4C090',                   outline: '#4A3820' } },
   // ── More Breeds ──────────────────────────────────────────────────────────
-  { name: 'Rottweiler',             def: { type: 'floppy',  face: '#1A1210', ear: '#0A0808', earInner: '#1A1210', mark: '#C47830',  outline: '#080808' } },
+  { name: 'German Shepherd',        def: { type: 'pointy',  face: '#C4883A', ear: '#1A0A00', earInner: '#C4883A', mark: '#F5E8C0',  outline: '#2A1A0A' } },
+  { name: 'Bulldog',                def: { type: 'flat',    face: '#D4C4A8', ear: '#C0B098', earInner: '#D0C0A8',                   outline: '#5A4830' } },
   { name: 'Boxer',                  def: { type: 'flat',    face: '#D89050', ear: '#C07838', earInner: '#C88040', mark: '#F5F0E8',  outline: '#5C3810' } },
-  { name: 'Great Dane',             def: { type: 'floppy',  face: '#D4A46A', ear: '#B08040', earInner: '#C49050',                   outline: '#5C3A10' } },
-  { name: 'Doberman',               def: { type: 'pointy',  face: '#1A1210', ear: '#0A0808', earInner: '#B05820', mark: '#B05820',  outline: '#080808' } },
-  { name: 'Corgi',                  def: { type: 'bat',     face: '#E8A840', ear: '#E8A840', earInner: '#F5E0B0', mark: '#F5E0B0',  outline: '#5C4010' } },
-  { name: 'Australian Shepherd',    def: { type: 'pointy',  face: '#9098B0', ear: '#707888', earInner: '#9098B0', mark: '#F5F0E8',  outline: '#303848' } },
-  { name: 'Mini Schnauzer',         def: { type: 'floppy',  face: '#909090', ear: '#606060', earInner: '#A0A0A0',                   outline: '#303030' } },
-  { name: 'Border Collie',          def: { type: 'pointy',  face: '#101010', ear: '#101010', earInner: '#101010', mark: '#F5F5F5',  outline: '#101010' } },
-  { name: 'Bernese Mountain',       def: { type: 'floppy',  face: '#101010', ear: '#0A0808', earInner: '#101010', mark: '#C07830',  outline: '#080808' } },
   { name: 'Chihuahua',              def: { type: 'bat',     face: '#D4A860', ear: '#C09040', earInner: '#E8C880',                   outline: '#5C3A10' } },
+  { name: 'Shiba Inu',              def: { type: 'upright', face: '#C83010', ear: '#C83010', earInner: '#F8D8A8',                   outline: '#8B2200' } },
+  { name: 'Siberian Husky',         def: { type: 'husky',   face: '#E8E8F0', ear: '#808898', earInner: '#E8E8F0', mark: '#606870',  outline: '#303848', eyeColor: '#3A78E0' } },
+  { name: 'Doberman',               def: { type: 'pointy',  face: '#1A1210', ear: '#0A0808', earInner: '#B05820', mark: '#B05820',  outline: '#080808' } },
+  { name: 'Great Dane',             def: { type: 'floppy',  face: '#D4A46A', ear: '#B08040', earInner: '#C49050',                   outline: '#5C3A10' } },
+  { name: 'Mini Schnauzer',         def: { type: 'floppy',  face: '#909090', ear: '#606060', earInner: '#A0A0A0',                   outline: '#303030' } },
+  { name: 'Pug',                    def: { type: 'flat',    face: '#D4B870', ear: '#B89050', earInner: '#C8A860',                   outline: '#5C4010' } },
+  { name: 'Corgi',                  def: { type: 'bat',     face: '#E8A840', ear: '#E8A840', earInner: '#F5E0B0', mark: '#F5E0B0',  outline: '#5C4010' } },
   { name: 'Pomeranian',             def: { type: 'fluffy',  face: '#E87830', ear: '#C05818', earInner: '#F09040',                   outline: '#5C2A08' } },
-  { name: 'Jack Russell',           def: { type: 'pointy',  face: '#F5F5F0', ear: '#C4783A', earInner: '#F5F5F0', mark: '#C4783A',  outline: '#404040' } },
+  { name: 'Border Collie',          def: { type: 'pointy',  face: '#101010', ear: '#101010', earInner: '#101010', mark: '#F5F5F5',  outline: '#101010' } },
+  { name: 'Shih Tzu',               def: { type: 'fluffy',  face: '#E8D8B8', ear: '#C8B898', earInner: '#E0CCAA',                   outline: '#5C4A28' } },
+  { name: 'Maltese',                def: { type: 'fluffy',  face: '#F8F5F0', ear: '#E8E0D8', earInner: '#F5F0E8',                   outline: '#909080' } },
+  { name: 'Boston Terrier',         def: { type: 'bat',     face: '#1A1A1A', ear: '#101010', earInner: '#1A1A1A', mark: '#F5F0E8',  outline: '#080808' } },
+  { name: 'Yorkshire Terrier',      def: { type: 'pointy',  face: '#C8A040', ear: '#2A2020', earInner: '#C8A040',                   outline: '#3A2810' } },
+  { name: 'Bichon Frise',           def: { type: 'fluffy',  face: '#F8F5F0', ear: '#E0D8D0', earInner: '#F5F0E8',                   outline: '#909080' } },
+  { name: 'Bernese Mountain',       def: { type: 'floppy',  face: '#101010', ear: '#0A0808', earInner: '#101010', mark: '#C07830',  outline: '#080808' } },
+  { name: 'Cocker Spaniel',         def: { type: 'longear', face: '#D4A840', ear: '#B08030', earInner: '#C09040',                   outline: '#5C3A10' } },
 ];
 
 export const PRESET_BREEDS = ALL_BREEDS.slice(0, 6);
