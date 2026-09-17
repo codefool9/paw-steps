@@ -80,10 +80,10 @@ function renderFace(def: BreedDef): React.ReactNode {
   switch (type) {
     case 'floppy': return (
       <>
-        <ellipse cx="17" cy="56" rx="13" ry="22" fill={ear}      stroke={outline} strokeWidth="2.5" transform="rotate(-12 17 56)"/>
-        <ellipse cx="83" cy="56" rx="13" ry="22" fill={ear}      stroke={outline} strokeWidth="2.5" transform="rotate( 12 83 56)"/>
-        <ellipse cx="17" cy="58" rx="7"  ry="14" fill={earInner} transform="rotate(-12 17 58)"/>
-        <ellipse cx="83" cy="58" rx="7"  ry="14" fill={earInner} transform="rotate( 12 83 58)"/>
+        <path d="M 27 32 C 10 36 5 58 9 72 C 13 83 24 84 28 76 C 33 70 30 42 27 32 Z" fill={ear} stroke={outline} strokeWidth="2.5"/>
+        <path d="M 73 32 C 90 36 95 58 91 72 C 87 83 76 84 72 76 C 67 70 70 42 73 32 Z" fill={ear} stroke={outline} strokeWidth="2.5"/>
+        <path d="M 26 37 C 13 40 10 60 14 70 C 17 77 24 77 27 70 C 29 63 28 46 26 37 Z" fill={earInner}/>
+        <path d="M 74 37 C 87 40 90 60 86 70 C 83 77 76 77 73 70 C 71 63 72 46 74 37 Z" fill={earInner}/>
         <circle  cx="50" cy="50" r="32"  fill={face} stroke={outline} strokeWidth="2.5"/>
         {mark && <ellipse cx="50" cy="55" rx="18" ry="13" fill={mark}/>}
         {eyes(37, 44, 63, 44)}
@@ -94,10 +94,10 @@ function renderFace(def: BreedDef): React.ReactNode {
 
     case 'pointy': return (
       <>
-        <polygon points="22,52 16,16 40,46" fill={ear}      stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
-        <polygon points="78,52 84,16 60,46" fill={ear}      stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
-        <polygon points="23,48 20,24 38,44" fill={earInner}/>
-        <polygon points="77,48 80,24 62,44" fill={earInner}/>
+        <path d="M 20 52 Q 12 32 24 12 Q 28 7 34 12 Q 42 32 40 52 Z" fill={ear} stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
+        <path d="M 80 52 Q 88 32 76 12 Q 72 7 66 12 Q 58 32 60 52 Z" fill={ear} stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
+        <path d="M 23 50 Q 17 34 25 16 Q 28 12 31 16 Q 38 34 36 50 Z" fill={earInner}/>
+        <path d="M 77 50 Q 83 34 75 16 Q 72 12 69 16 Q 62 34 64 50 Z" fill={earInner}/>
         <circle  cx="50" cy="54" r="30"  fill={face} stroke={outline} strokeWidth="2.5"/>
         {mark && <ellipse cx="50" cy="49" rx="13" ry="21" fill={mark} opacity="0.7"/>}
         {eyes(37, 47, 63, 47)}
@@ -108,10 +108,10 @@ function renderFace(def: BreedDef): React.ReactNode {
 
     case 'bat': return (
       <>
-        <polygon points="24,62 8,12 44,50"  fill={ear}      stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
-        <polygon points="76,62 92,12 56,50"  fill={ear}      stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
-        <polygon points="25,58 14,20 42,48"  fill={earInner}/>
-        <polygon points="75,58 86,20 58,48"  fill={earInner}/>
+        <path d="M 14 65 Q 3 42 18 14 Q 24 7 33 14 Q 42 38 44 62 Z" fill={ear} stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
+        <path d="M 86 65 Q 97 42 82 14 Q 76 7 67 14 Q 58 38 56 62 Z" fill={ear} stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
+        <path d="M 18 61 Q 9 44 21 19 Q 26 13 32 19 Q 39 40 40 59 Z" fill={earInner}/>
+        <path d="M 82 61 Q 91 44 79 19 Q 74 13 68 19 Q 61 40 60 59 Z" fill={earInner}/>
         <ellipse cx="50" cy="58" rx="34" ry="28" fill={face} stroke={outline} strokeWidth="2.5"/>
         {mark && <ellipse cx="50" cy="56" rx="22" ry="14" fill={mark} opacity="0.5"/>}
         {eyes(37, 50, 63, 50, 7.5)}
@@ -134,8 +134,10 @@ function renderFace(def: BreedDef): React.ReactNode {
 
     case 'flat': return (
       <>
-        <ellipse cx="22" cy="40" rx="12" ry="10" fill={ear} stroke={outline} strokeWidth="2.5" transform="rotate(-25 22 40)"/>
-        <ellipse cx="78" cy="40" rx="12" ry="10" fill={ear} stroke={outline} strokeWidth="2.5" transform="rotate( 25 78 40)"/>
+        <path d="M 18 44 Q 10 32 16 23 Q 22 15 30 21 Q 36 27 32 38 Q 28 44 18 44 Z" fill={ear} stroke={outline} strokeWidth="2.5"/>
+        <path d="M 82 44 Q 90 32 84 23 Q 78 15 70 21 Q 64 27 68 38 Q 72 44 82 44 Z" fill={ear} stroke={outline} strokeWidth="2.5"/>
+        <path d="M 20 41 Q 14 33 19 26 Q 23 19 29 23 Q 33 28 30 37 Q 27 41 20 41 Z" fill={earInner}/>
+        <path d="M 80 41 Q 86 33 81 26 Q 77 19 71 23 Q 66 28 70 37 Q 73 41 80 41 Z" fill={earInner}/>
         <ellipse cx="50" cy="54" rx="36" ry="28" fill={face} stroke={outline} strokeWidth="2.5"/>
         <path d="M 30 48 Q 42 43 50 45 Q 58 43 70 48" fill="none" stroke={outline} strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
         {mark && <ellipse cx="50" cy="60" rx="22" ry="12" fill={mark} opacity="0.3"/>}
@@ -149,10 +151,10 @@ function renderFace(def: BreedDef): React.ReactNode {
 
     case 'longear': return (
       <>
-        <ellipse cx="16" cy="65" rx="11" ry="32" fill={ear}      stroke={outline} strokeWidth="2.5" transform="rotate(-5 16 65)"/>
-        <ellipse cx="84" cy="65" rx="11" ry="32" fill={ear}      stroke={outline} strokeWidth="2.5" transform="rotate( 5 84 65)"/>
-        <ellipse cx="16" cy="67" rx="6"  ry="22" fill={earInner} transform="rotate(-5 16 67)"/>
-        <ellipse cx="84" cy="67" rx="6"  ry="22" fill={earInner} transform="rotate( 5 84 67)"/>
+        <path d="M 26 36 C 9 40 4 65 8 82 C 12 94 26 95 30 86 C 35 78 32 46 26 36 Z" fill={ear} stroke={outline} strokeWidth="2.5"/>
+        <path d="M 74 36 C 91 40 96 65 92 82 C 88 94 74 95 70 86 C 65 78 68 46 74 36 Z" fill={ear} stroke={outline} strokeWidth="2.5"/>
+        <path d="M 25 41 C 12 45 9 66 13 80 C 16 89 26 89 28 81 C 31 73 30 50 25 41 Z" fill={earInner}/>
+        <path d="M 75 41 C 88 45 91 66 87 80 C 84 89 74 89 72 81 C 69 73 70 50 75 41 Z" fill={earInner}/>
         <circle  cx="50" cy="48" r="30"  fill={face} stroke={outline} strokeWidth="2.5"/>
         {mark && <ellipse cx="50" cy="40" rx="20" ry="15" fill={mark} opacity="0.5"/>}
         {eyes(37, 42, 63, 42)}
@@ -163,10 +165,10 @@ function renderFace(def: BreedDef): React.ReactNode {
 
     case 'husky': return (
       <>
-        <polygon points="22,50 16,15 40,44" fill={ear}      stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
-        <polygon points="78,50 84,15 60,44" fill={ear}      stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
-        <polygon points="23,46 20,22 38,42" fill={earInner}/>
-        <polygon points="77,46 80,22 62,42" fill={earInner}/>
+        <path d="M 19 52 Q 10 30 23 11 Q 27 6 33 11 Q 42 30 40 52 Z" fill={ear} stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
+        <path d="M 81 52 Q 90 30 77 11 Q 73 6 67 11 Q 58 30 60 52 Z" fill={ear} stroke={outline} strokeWidth="2.5" strokeLinejoin="round"/>
+        <path d="M 22 50 Q 15 33 24 15 Q 27 11 31 15 Q 39 33 37 50 Z" fill={earInner}/>
+        <path d="M 78 50 Q 85 33 76 15 Q 73 11 69 15 Q 61 33 63 50 Z" fill={earInner}/>
         <circle  cx="50" cy="52" r="31"  fill={mark || '#606870'} stroke={outline} strokeWidth="2.5"/>
         <ellipse cx="50" cy="57" rx="20" ry="22" fill={face}/>
         {eyes(37, 46, 63, 46, 7.5)}
