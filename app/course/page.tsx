@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import DogFace from '@/components/DogFace';
+import PetFace from '@/components/PetFace';
 import { BackIcon, StarIcon, BoneIcon, CheckCircleIcon, PawIcon, TrophyIcon, TargetIcon, LightningIcon, ChevronRightIcon } from '@/components/Icon';
 import { FREE_COURSES } from '@/lib/courses';
 
@@ -51,7 +51,7 @@ function CourseContent() {
       <div className="shrink-0 bg-gradient-to-br from-amber-300 to-amber-400 px-5 py-6 text-center">
         <div className="flex justify-center mb-3">
           <div className="rounded-full bg-white/30 p-2">
-            <DogFace breed={course.breed} size={72}/>
+            <PetFace breed={course.breed} type={course.petType === 'cat' ? 'cat' : 'dog'} size={72}/>
           </div>
         </div>
         <h2 className="text-2xl font-extrabold text-amber-900">{course.title}</h2>

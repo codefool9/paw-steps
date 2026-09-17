@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import DogFace from '@/components/DogFace';
+import PetFace from '@/components/PetFace';
 import { PawIcon } from '@/components/Icon';
 
 const HERO_BREEDS = ['Golden Retriever', 'Poodle', 'Siberian Husky'];
@@ -61,7 +61,7 @@ export default function Welcome() {
         <div className="flex gap-3">
           {HERO_BREEDS.map(breed => (
             <div key={breed} className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 shadow-inner p-1">
-              <DogFace breed={breed} size={70}/>
+              <PetFace breed={breed} type="dog" size={70}/>
             </div>
           ))}
         </div>

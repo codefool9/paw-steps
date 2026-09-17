@@ -1,10 +1,10 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import DogFace from '@/components/DogFace';
+import PetFace from '@/components/PetFace';
 import { FlameIcon, StarIcon, BoneIcon, PawIcon, TrophyIcon, CheckCircleIcon, TargetIcon, MapPinIcon, ChevronRightIcon, LightningIcon } from '@/components/Icon';
 
-type Avatar = { breed: string; name: string };
+type Avatar = { breed: string; name: string; type?: string };
 
 const STREAK    = 7;
 const XP        = 245;
@@ -65,8 +65,9 @@ export default function Profile() {
     }
   }, []);
 
-  const breed   = avatar?.breed ?? 'Golden Retriever';
-  const pupName = avatar?.name  ?? 'Your Pup';
+  const breed    = avatar?.breed ?? 'Golden Retriever';
+  const petType  = (avatar?.type === 'cat' ? 'cat' : 'dog') as 'dog' | 'cat';
+  const pupName  = avatar?.name  ?? 'Your Pup';
 
   function toggleTag(tag: string) {
     setTags(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]);
@@ -79,7 +80,7 @@ export default function Profile() {
       <div className="shrink-0 bg-gradient-to-br from-amber-500 to-amber-600 px-5 pt-6 pb-8">
         <div className="flex items-center gap-4">
           <div className="rounded-full bg-white/20 p-1.5 shadow-md">
-            <DogFace breed={breed} size={68}/>
+            <PetFace breed={breed} type={petType} size={68}/>
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-xl font-extrabold text-white leading-tight">{pupName}</p>
@@ -270,7 +271,7 @@ export default function Profile() {
           {WINS.map(win => (
             <div key={win.name} className="flex items-start gap-3 rounded-2xl border border-amber-100 bg-white p-3 shadow-sm">
               <div className="shrink-0 rounded-xl bg-amber-50 p-0.5">
-                <DogFace breed={win.breed} size={40}/>
+                <PetFace breed={win.breed} type="dog" size={40}/>
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-bold text-amber-900">{win.name}</p>

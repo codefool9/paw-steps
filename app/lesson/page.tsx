@@ -2,8 +2,7 @@
 import Link from 'next/link';
 import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import DogFace from '@/components/DogFace';
-import CatFace from '@/components/CatFace';
+import PetFace from '@/components/PetFace';
 import { BackIcon, PawIcon, CheckCircleIcon, LockIcon } from '@/components/Icon';
 import { FREE_COURSES } from '@/lib/courses';
 
@@ -57,10 +56,7 @@ function LessonContent() {
       <div className="shrink-0 mx-5 mt-4 rounded-2xl bg-amber-900 overflow-hidden shadow-md" style={{ aspectRatio: '16/9' }}>
         <div className="w-full h-full flex flex-col items-center justify-center gap-3">
           <div className="rounded-full bg-white/10 p-4">
-            {isCat
-              ? <CatFace breed={course.breed} size={56}/>
-              : <DogFace breed={course.breed} size={56}/>
-            }
+            <PetFace breed={course.breed} type={isCat ? 'cat' : 'dog'} size={56}/>
           </div>
           <p className="text-white/60 text-xs font-medium">Video coming soon</p>
         </div>

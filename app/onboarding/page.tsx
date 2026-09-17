@@ -1,8 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import DogFace from '@/components/DogFace';
-import CatFace from '@/components/CatFace';
+import PetFace from '@/components/PetFace';
 import { PawIcon, BoneIcon, FlameIcon, StarIcon, MapPinIcon, TrophyIcon } from '@/components/Icon';
 
 type PetType = 'dog' | 'cat';
@@ -49,14 +48,11 @@ const slides = [
       <div className="flex flex-col items-center gap-3">
         <div className="flex gap-2">
           {(petType === 'dog'
-            ? ['Beagle', 'French Bulldog', 'Border Collie', 'Labrador'] as const
-            : ['Tabby', 'Siamese', 'Persian', 'Maine Coon'] as const
+            ? ['Beagle', 'French Bulldog', 'Border Collie', 'Labrador']
+            : ['Tabby', 'Siamese', 'Persian', 'Maine Coon']
           ).map(b => (
             <div key={b} className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/25 p-1">
-              {petType === 'dog'
-                ? <DogFace breed={b} size={52}/>
-                : <CatFace breed={b} size={52}/>
-              }
+              <PetFace breed={b} type={petType ?? 'dog'} size={52}/>
             </div>
           ))}
         </div>
@@ -82,10 +78,7 @@ const slides = [
         ].map(item => (
           <div key={item.name} className="flex items-center gap-3 rounded-xl bg-white/20 px-3 py-2.5">
             <div className="shrink-0 rounded-lg bg-white/20 p-0.5">
-              {item.type === 'dog'
-                ? <DogFace breed={item.breed} size={36}/>
-                : <CatFace breed={item.breed} size={36}/>
-              }
+              <PetFace breed={item.breed} type={item.type} size={36}/>
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-xs font-bold text-white">{item.name}</p>
@@ -147,14 +140,14 @@ export default function Onboarding() {
               onClick={() => choosePet('dog')}
               className="flex-1 flex flex-col items-center gap-3 rounded-2xl bg-white/20 border-2 border-white/40 py-6 active:bg-white/30 transition-colors"
             >
-              <DogFace breed="Golden Retriever" size={72}/>
+              <PetFace breed="Golden Retriever" type="dog" size={72}/>
               <span className="text-base font-extrabold text-white">Dog</span>
             </button>
             <button
               onClick={() => choosePet('cat')}
               className="flex-1 flex flex-col items-center gap-3 rounded-2xl bg-white/20 border-2 border-white/40 py-6 active:bg-white/30 transition-colors"
             >
-              <CatFace breed="Tabby" size={72}/>
+              <PetFace breed="Tabby" type="cat" size={72}/>
               <span className="text-base font-extrabold text-white">Cat</span>
             </button>
           </div>

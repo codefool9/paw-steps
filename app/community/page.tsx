@@ -1,8 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import DogFace from '@/components/DogFace';
-import CatFace from '@/components/CatFace';
+import PetFace from '@/components/PetFace';
 import { PawIcon, MapPinIcon, StarIcon, FlameIcon, BoneIcon } from '@/components/Icon';
 
 type PetType = 'dog' | 'cat';
@@ -68,9 +67,7 @@ const EVENTS = [
 ];
 
 function Avatar({ breed, type, size }: { breed: string; type: PetType; size: number }) {
-  return type === 'cat'
-    ? <CatFace breed={breed} size={size}/>
-    : <DogFace breed={breed} size={size}/>;
+  return <PetFace breed={breed} type={type} size={size}/>;
 }
 
 const energyColor: Record<string, string> = {

@@ -2,8 +2,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import DogFace, { PRESET_BREEDS, MORE_BREEDS, ALL_BREEDS } from '@/components/DogFace';
-import CatFace, { PRESET_CAT_BREEDS, MORE_CAT_BREEDS, ALL_CAT_BREEDS } from '@/components/CatFace';
+import { PRESET_BREEDS, MORE_BREEDS, ALL_BREEDS } from '@/components/DogFace';
+import { PRESET_CAT_BREEDS, MORE_CAT_BREEDS, ALL_CAT_BREEDS } from '@/components/CatFace';
+import PetFace from '@/components/PetFace';
 import { BackIcon } from '@/components/Icon';
 
 type PetType = 'dog' | 'cat';
@@ -35,9 +36,7 @@ export default function Setup() {
   const selectedBreed = allBreeds[selected];
 
   function Avatar({ breed, size }: { breed: string; size: number }) {
-    return petType === 'dog'
-      ? <DogFace breed={breed} size={size}/>
-      : <CatFace breed={breed} size={size}/>;
+    return <PetFace breed={breed} type={petType} size={size}/>;
   }
 
   function handleStart() {
@@ -72,10 +71,7 @@ export default function Setup() {
                 petType === t ? 'bg-amber-600 text-white shadow-sm' : 'text-stone-500'
               }`}
             >
-              {t === 'dog'
-                ? <DogFace breed="Golden Retriever" size={22}/>
-                : <CatFace breed="Tabby" size={22}/>
-              }
+              <PetFace breed={t === 'dog' ? 'Golden Retriever' : 'Tabby'} type={t} size={22}/>
               {t === 'dog' ? 'Dog' : 'Cat'}
             </button>
           ))}

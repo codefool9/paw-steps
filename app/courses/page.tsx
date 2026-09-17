@@ -2,15 +2,12 @@
 import Link from 'next/link';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import DogFace from '@/components/DogFace';
-import CatFace from '@/components/CatFace';
+import PetFace from '@/components/PetFace';
 import { BoneIcon, TrophyIcon, TargetIcon, LightningIcon, StarIcon, LockIcon, BackIcon, CheckCircleIcon } from '@/components/Icon';
 import { FREE_COURSES, PREMIUM_COURSES, FreeCourse } from '@/lib/courses';
 
 function CourseAvatar({ course, size }: { course: FreeCourse; size: number }) {
-  return course.petType === 'cat'
-    ? <CatFace breed={course.breed} size={size}/>
-    : <DogFace breed={course.breed} size={size}/>;
+  return <PetFace breed={course.breed} type={course.petType === 'cat' ? 'cat' : 'dog'} size={size}/>;
 }
 
 const CATEGORIES = ['All', 'Obedience', 'Tricks', 'Hunting', 'Agility'] as const;
@@ -45,7 +42,7 @@ function Stars({ rating }: { rating: number }) {
 function EmptyState({ category }: { category: string }) {
   return (
     <div className="flex flex-col items-center gap-3 rounded-2xl border border-amber-100 bg-white p-8 text-center">
-      <DogFace breed="Beagle" size={64}/>
+      <PetFace breed="Beagle" type="dog" size={64}/>
       <p className="text-sm font-bold text-amber-900">No free courses in {category} yet</p>
       <p className="text-xs text-stone-400">Check our Premium section below for expert-led options</p>
     </div>
@@ -167,7 +164,7 @@ function CoursesContent() {
                   </div>
                   <div className="mb-2 flex items-center gap-3">
                     <div className="shrink-0 rounded-xl bg-amber-100 p-1">
-                      <DogFace breed={course.breed} size={48}/>
+                      <PetFace breed={course.breed} type="dog" size={48}/>
                     </div>
                     <div>
                       <p className="text-sm font-bold text-amber-900">{course.title}</p>
@@ -205,7 +202,7 @@ function CoursesContent() {
         <div className="absolute inset-0 flex items-end justify-center bg-black/40 pb-10 px-6">
           <div className="w-full rounded-2xl bg-white p-5 shadow-xl">
             <div className="mb-3 flex items-center gap-3">
-              <DogFace breed={unlockBreed} size={48}/>
+              <PetFace breed={unlockBreed} type="dog" size={48}/>
               <div>
                 <p className="text-sm font-bold text-amber-900">Create a free account</p>
                 <p className="text-xs text-stone-500">Sign up to unlock premium courses and track your progress</p>
