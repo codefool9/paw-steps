@@ -98,16 +98,15 @@ function CourseContent() {
         {/* Lesson list */}
         <div className="mb-5 overflow-hidden rounded-2xl border border-amber-100 bg-white shadow-sm">
           {course.lessonList.map((lesson, i) => (
-            <div
-              key={lesson.num}
-              className={`flex items-center gap-4 px-4 py-3.5 ${i < course.lessonList.length - 1 ? 'border-b border-amber-50' : ''}`}
-            >
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-amber-300 bg-amber-50">
-                <span className="text-[11px] font-bold text-amber-600">{lesson.num}</span>
+            <Link key={lesson.num} href={`/lesson?course=${id}&lesson=${lesson.num}`}>
+              <div className={`flex items-center gap-4 px-4 py-3.5 active:bg-amber-50 transition-colors ${i < course.lessonList.length - 1 ? 'border-b border-amber-50' : ''}`}>
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-amber-300 bg-amber-50">
+                  <span className="text-[11px] font-bold text-amber-600">{lesson.num}</span>
+                </div>
+                <span className="flex-1 text-sm text-stone-700 leading-tight">{lesson.title}</span>
+                <span className="shrink-0 text-[11px] font-medium text-stone-400">{lesson.duration}</span>
               </div>
-              <span className="flex-1 text-sm text-stone-700 leading-tight">{lesson.title}</span>
-              <span className="shrink-0 text-[11px] font-medium text-stone-400">{lesson.duration}</span>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -141,10 +140,12 @@ function CourseContent() {
 
       {/* Sticky CTA */}
       <div className="shrink-0 px-5 pb-4 pt-3 bg-amber-50 border-t border-amber-200">
-        <button className="w-full flex items-center justify-center gap-2 rounded-2xl bg-amber-600 py-4 font-bold text-white shadow-md active:bg-amber-700">
-          <PawIcon size={18}/>
-          Start Course
-        </button>
+        <Link href={`/lesson?course=${id}&lesson=1`}>
+          <div className="w-full flex items-center justify-center gap-2 rounded-2xl bg-amber-600 py-4 font-bold text-white shadow-md active:bg-amber-700">
+            <PawIcon size={18}/>
+            Start Course
+          </div>
+        </Link>
       </div>
 
     </div>

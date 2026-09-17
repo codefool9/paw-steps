@@ -2,7 +2,7 @@
 import { usePathname } from 'next/navigation';
 import BottomNav from './BottomNav';
 
-const NO_NAV = ['/', '/setup'];
+const NO_NAV = ['/', '/setup', '/lesson'];
 
 export default function ConditionalNav() {
   const pathname = usePathname();
