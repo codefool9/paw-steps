@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import ConditionalNav from '@/components/ConditionalNav';
+import FeedbackWidget from '@/components/FeedbackWidget';
 
 export const metadata: Metadata = {
   title: 'PawSteps — Puppy Obedience & Tricks',
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1 overflow-y-auto flex flex-col">
             {children}
           </main>
+          <FeedbackWidget />
           <ConditionalNav />
         </div>
       </body>
