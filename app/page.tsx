@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import PetFace from '@/components/PetFace';
 import { PawIcon } from '@/components/Icon';
 
-const HERO_BREEDS = ['Golden Retriever', 'Poodle', 'Siberian Husky'];
+const HERO_BREEDS = ['Golden Retriever', 'German Shepherd', 'Cocker Spaniel'];
 
 export default function Welcome() {
   const router = useRouter();
