@@ -13,10 +13,13 @@ export default function Welcome() {
   const [redirecting, setRedirecting] = useState(false);
 
   useEffect(() => {
-    const mode = localStorage.getItem('pawsteps_mode');
+    const mode      = localStorage.getItem('pawsteps_mode');
+    const onboarded = localStorage.getItem('pawsteps_onboarded');
     if (mode) {
       setRedirecting(true);
-      router.push('/home'); // push so back-nav from Home returns here
+      router.push('/home');
+    } else if (!onboarded) {
+      router.push('/onboarding');
     }
   }, [router]);
 
