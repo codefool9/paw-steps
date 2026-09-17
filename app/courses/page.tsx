@@ -3,8 +3,15 @@ import Link from 'next/link';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import DogFace from '@/components/DogFace';
+import CatFace from '@/components/CatFace';
 import { BoneIcon, TrophyIcon, TargetIcon, LightningIcon, StarIcon, LockIcon, BackIcon, CheckCircleIcon } from '@/components/Icon';
-import { FREE_COURSES, PREMIUM_COURSES } from '@/lib/courses';
+import { FREE_COURSES, PREMIUM_COURSES, FreeCourse } from '@/lib/courses';
+
+function CourseAvatar({ course, size }: { course: FreeCourse; size: number }) {
+  return course.petType === 'cat'
+    ? <CatFace breed={course.breed} size={size}/>
+    : <DogFace breed={course.breed} size={size}/>;
+}
 
 const CATEGORIES = ['All', 'Obedience', 'Tricks', 'Hunting', 'Agility'] as const;
 type Category = typeof CATEGORIES[number];
@@ -57,7 +64,11 @@ function CoursesContent() {
     if ((CATEGORIES as readonly string[]).includes(cat)) setActive(cat as Category);
   }, [searchParams]);
 
-  const filtered = FREE_COURSES.filter(c => active === 'All' || c.category === active);
+  const petType = (typeof localStorage !== 'undefined' ? localStorage.getItem('pawsteps_pet_type') : null) ?? 'dog';
+  const filtered = FREE_COURSES.filter(c =>
+    (c.petType === petType || c.petType === 'both') &&
+    (active === 'All' || c.category === active)
+  );
   const filteredPremium = PREMIUM_COURSES.filter(p => active === 'All' || p.category === active);
 
   function handleUnlock(breed: string) {
@@ -111,7 +122,7 @@ function CoursesContent() {
               <Link key={course.id} href={`/course?id=${course.id}`}>
                 <div className="flex items-center gap-3 rounded-2xl border border-amber-100 bg-white p-3 shadow-sm active:bg-amber-50 transition-colors">
                   <div className="shrink-0 rounded-xl bg-amber-50 p-1">
-                    <DogFace breed={course.breed} size={52}/>
+                    <CourseAvatar course={course} size={52}/>
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="mb-0.5 flex items-center gap-1.5">

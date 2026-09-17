@@ -2,6 +2,7 @@ export type Lesson = { num: number; title: string; duration: string };
 
 export type FreeCourse = {
   id: number;
+  petType: 'dog' | 'cat' | 'both';
   breed: string;
   title: string;
   category: 'Obedience' | 'Tricks' | 'Hunting' | 'Agility';
@@ -30,6 +31,7 @@ export type PremiumCourse = {
 export const FREE_COURSES: FreeCourse[] = [
   {
     id: 0,
+    petType: 'dog',
     breed: 'Beagle',
     title: 'Puppy Basics',
     category: 'Obedience',
@@ -53,6 +55,7 @@ export const FREE_COURSES: FreeCourse[] = [
   },
   {
     id: 1,
+    petType: 'dog',
     breed: 'Labrador',
     title: 'Leash Training',
     category: 'Obedience',
@@ -78,6 +81,7 @@ export const FREE_COURSES: FreeCourse[] = [
   },
   {
     id: 2,
+    petType: 'dog',
     breed: 'Golden Retriever',
     title: 'Sit, Stay, Come',
     category: 'Obedience',
@@ -99,6 +103,7 @@ export const FREE_COURSES: FreeCourse[] = [
   },
   {
     id: 3,
+    petType: 'dog',
     breed: 'Bulldog',
     title: 'House Training 101',
     category: 'Obedience',
@@ -121,6 +126,7 @@ export const FREE_COURSES: FreeCourse[] = [
   },
   {
     id: 4,
+    petType: 'dog',
     breed: 'Poodle',
     title: 'Basic Tricks Pack',
     category: 'Tricks',
@@ -144,6 +150,7 @@ export const FREE_COURSES: FreeCourse[] = [
   },
   {
     id: 5,
+    petType: 'dog',
     breed: 'Border Collie',
     title: 'Advanced Tricks',
     category: 'Tricks',
@@ -171,6 +178,7 @@ export const FREE_COURSES: FreeCourse[] = [
   },
   {
     id: 6,
+    petType: 'dog',
     breed: 'Vizsla',
     title: 'Hunting Intro',
     category: 'Hunting',
@@ -201,6 +209,7 @@ export const FREE_COURSES: FreeCourse[] = [
   },
   {
     id: 7,
+    petType: 'dog',
     breed: 'Weimaraner',
     title: 'Bird Dog Basics',
     category: 'Hunting',
@@ -228,6 +237,7 @@ export const FREE_COURSES: FreeCourse[] = [
   },
   {
     id: 8,
+    petType: 'dog',
     breed: 'Australian Shepherd',
     title: 'Agility Foundations',
     category: 'Agility',
@@ -249,6 +259,96 @@ export const FREE_COURSES: FreeCourse[] = [
       { num: 8,  title: 'Chaining Obstacles',         duration: '30 min' },
       { num: 9,  title: 'Handling Techniques',        duration: '25 min' },
       { num: 10, title: 'First Mini-Course Run',      duration: '30 min' },
+    ],
+  },
+  // Cat courses
+  {
+    id: 9,
+    petType: 'cat',
+    breed: 'Tabby',
+    title: 'Clicker Training Intro',
+    category: 'Tricks',
+    level: 'Easy',
+    weeks: 2,
+    lessonCount: 5,
+    rating: 4.9,
+    reviews: 203,
+    ageNote: 'All ages',
+    xpReward: 75,
+    lessonList: [
+      { num: 1, title: 'What Is a Clicker?',          duration: '5 min'  },
+      { num: 2, title: 'Charging the Clicker',        duration: '10 min' },
+      { num: 3, title: 'Click = Treat Timing',        duration: '10 min' },
+      { num: 4, title: 'First Behavior: Touch',       duration: '15 min' },
+      { num: 5, title: 'Chaining Two Behaviors',      duration: '15 min' },
+    ],
+  },
+  {
+    id: 10,
+    petType: 'cat',
+    breed: 'Siamese',
+    title: 'Sit & Stay for Cats',
+    category: 'Obedience',
+    level: 'Easy',
+    weeks: 2,
+    lessonCount: 6,
+    rating: 4.7,
+    reviews: 178,
+    ageNote: 'All ages',
+    xpReward: 90,
+    lessonList: [
+      { num: 1, title: 'Getting Your Cat\'s Attention', duration: '10 min' },
+      { num: 2, title: 'Luring Into a Sit',             duration: '15 min' },
+      { num: 3, title: 'Adding the Cue Word',           duration: '10 min' },
+      { num: 4, title: 'Teaching Stay',                 duration: '15 min' },
+      { num: 5, title: 'Distance & Duration',           duration: '20 min' },
+      { num: 6, title: 'Real-World Practice',           duration: '20 min' },
+    ],
+  },
+  {
+    id: 11,
+    petType: 'cat',
+    breed: 'Persian',
+    title: 'Paw, High Five & Fist Bump',
+    category: 'Tricks',
+    level: 'Medium',
+    weeks: 3,
+    lessonCount: 6,
+    rating: 4.8,
+    reviews: 134,
+    ageNote: 'Ages 3 mo+',
+    xpReward: 90,
+    lessonList: [
+      { num: 1, title: 'Targeting Your Hand',       duration: '10 min' },
+      { num: 2, title: 'Paw on Cue',               duration: '15 min' },
+      { num: 3, title: 'High Five',                 duration: '15 min' },
+      { num: 4, title: 'Fist Bump',                 duration: '15 min' },
+      { num: 5, title: 'Wave on Command',           duration: '20 min' },
+      { num: 6, title: 'Trick Chain Showcase',      duration: '20 min' },
+    ],
+  },
+  {
+    id: 12,
+    petType: 'cat',
+    breed: 'Maine Coon',
+    title: 'Button & Sound Training',
+    category: 'Tricks',
+    level: 'Advanced',
+    weeks: 4,
+    lessonCount: 8,
+    rating: 4.9,
+    reviews: 89,
+    ageNote: 'Ages 6 mo+',
+    xpReward: 120,
+    lessonList: [
+      { num: 1, title: 'Intro to Talking Buttons',      duration: '10 min' },
+      { num: 2, title: 'First Word: Outside',           duration: '15 min' },
+      { num: 3, title: 'First Word: Play',              duration: '15 min' },
+      { num: 4, title: 'First Word: Food',              duration: '15 min' },
+      { num: 5, title: 'Two-Button Sentences',          duration: '20 min' },
+      { num: 6, title: 'Location Words',                duration: '20 min' },
+      { num: 7, title: 'Emotional Vocabulary',          duration: '20 min' },
+      { num: 8, title: 'Expanding the Board',           duration: '25 min' },
     ],
   },
 ];
