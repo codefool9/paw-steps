@@ -105,7 +105,7 @@ export default function FeedbackWidget() {
         aria-label="Leave feedback"
       >
         <StarIcon size={13} className="text-amber-200"/>
-        Rate App
+        Leave a Review
       </button>
 
       {/* Overlay */}
