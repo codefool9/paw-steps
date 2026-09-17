@@ -126,7 +126,7 @@ export default function Onboarding() {
   // ── Step 0: pet type selection ──────────────────────────────────────────
   if (!petChosen) {
     return (
-      <div className="flex flex-1 flex-col items-center justify-between bg-gradient-to-b from-amber-500 to-amber-600 px-6 pb-10 pt-12">
+      <div className="flex flex-1 min-h-full flex-col items-center justify-between bg-gradient-to-b from-amber-500 to-amber-600 px-6 pb-10 pt-12">
         <div className="flex flex-col items-center gap-2 text-center">
           <PawIcon size={48} className="text-white mb-1"/>
           <h1 className="text-3xl font-extrabold text-white">Welcome to PawSteps</h1>
@@ -159,7 +159,7 @@ export default function Onboarding() {
 
   // ── Steps 1–3: feature slides ───────────────────────────────────────────
   return (
-    <div className={`flex flex-1 flex-col items-center justify-between bg-gradient-to-b ${slide.bg} px-6 pb-10 pt-10 transition-colors duration-500`}>
+    <div className={`flex flex-1 min-h-full flex-col items-center justify-between bg-gradient-to-b ${slide.bg} px-6 pb-10 pt-10 transition-colors duration-500`}>
 
       <div className="w-full flex justify-end">
         <button onClick={finish} className="text-sm font-semibold text-white/70">Skip</button>
