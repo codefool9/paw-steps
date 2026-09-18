@@ -110,6 +110,16 @@ export function CheckCircleIcon({ size = 24, className = '' }: IconProps) {
   );
 }
 
+export function ClickerIcon({ size = 24, className = '' }: IconProps) {
+  return base(size, className,
+    <>
+      <path d="M8 8a4 4 0 018 0v9a4 4 0 01-8 0V8z"/>
+      <circle cx="12" cy="10.5" r="2"/>
+      <path d="M9.3 4.2L12 1.8l2.7 2.4M12 1.8v2.4"/>
+    </>
+  );
+}
+
 export function MapPinIcon({ size = 24, className = '' }: IconProps) {
   return base(size, className,
     <>

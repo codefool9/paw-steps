@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ClickerIcon } from '@/components/Icon';
 
 const tabs = [
   {
@@ -51,27 +52,49 @@ const tabs = [
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const firstHalf  = tabs.slice(0, 2);
+  const secondHalf = tabs.slice(2);
+  const clickerActive = pathname === '/clicker';
+
+  const renderTab = (tab: typeof tabs[number]) => {
+    const isActive =
+      pathname === tab.href ||
+      (tab.href === '/courses' && pathname === '/course');
+    return (
+      <Link
+        key={tab.href}
+        href={tab.href}
+        className={`flex flex-1 flex-col items-center justify-center gap-1 py-3 transition-colors ${
+          isActive ? 'text-amber-600' : 'text-stone-400 hover:text-amber-500'
+        }`}
+      >
+        {tab.icon(isActive)}
+        <span className={`text-[10px] font-semibold ${isActive ? 'text-amber-600' : 'text-stone-400'}`}>
+          {tab.label}
+        </span>
+      </Link>
+    );
+  };
+
   return (
-    <nav className="flex shrink-0 items-stretch border-t border-amber-200 bg-white" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
-      {tabs.map(tab => {
-        const isActive =
-          pathname === tab.href ||
-          (tab.href === '/courses' && pathname === '/course');
-        return (
-          <Link
-            key={tab.href}
-            href={tab.href}
-            className={`flex flex-1 flex-col items-center justify-center gap-1 py-3 transition-colors ${
-              isActive ? 'text-amber-600' : 'text-stone-400 hover:text-amber-500'
-            }`}
-          >
-            {tab.icon(isActive)}
-            <span className={`text-[10px] font-semibold ${isActive ? 'text-amber-600' : 'text-stone-400'}`}>
-              {tab.label}
-            </span>
-          </Link>
-        );
-      })}
+    <nav className="relative flex shrink-0 items-stretch border-t border-amber-200 bg-white" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      {firstHalf.map(renderTab)}
+
+      {/* Clicker — raised, bows out above the bar but stays attached to it */}
+      <Link href="/clicker" className="relative flex flex-1 flex-col items-center justify-center">
+        <span
+          className={`absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full shadow-lg ring-4 ring-amber-50 transition-transform active:scale-95 ${
+            clickerActive ? 'bg-amber-700' : 'bg-amber-600'
+          }`}
+        >
+          <ClickerIcon size={24} className="text-white"/>
+        </span>
+        <span className={`mt-7 text-[10px] font-semibold ${clickerActive ? 'text-amber-600' : 'text-stone-400'}`}>
+          Clicker
+        </span>
+      </Link>
+
+      {secondHalf.map(renderTab)}
     </nav>
   );
 }
