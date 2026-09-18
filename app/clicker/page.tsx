@@ -1,12 +1,14 @@
 'use client';
 import { useState } from 'react';
 import { ClickerIcon } from '@/components/Icon';
+import { playClickSound } from '@/lib/clickSound';
 
 export default function Clicker() {
   const [clicks, setClicks] = useState(0);
   const [pulse, setPulse]   = useState(false);
 
   function handleClick() {
+    playClickSound();
     setClicks(c => c + 1);
     setPulse(true);
     setTimeout(() => setPulse(false), 120);

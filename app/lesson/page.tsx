@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import PetFace from '@/components/PetFace';
 import { BackIcon, PawIcon, CheckCircleIcon, LockIcon } from '@/components/Icon';
 import { FREE_COURSES } from '@/lib/courses';
+import { playClickSound } from '@/lib/clickSound';
 
 function LessonContent() {
   const searchParams  = useSearchParams();
@@ -20,6 +21,7 @@ function LessonContent() {
   const isCat     = course.petType === 'cat';
 
   function handleClick() {
+    playClickSound();
     setClicks(c => c + 1);
     setPulse(true);
     setTimeout(() => setPulse(false), 120);
